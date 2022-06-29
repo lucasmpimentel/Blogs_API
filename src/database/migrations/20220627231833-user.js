@@ -26,7 +26,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
     });
-    return StoresTable;
+    return UsersTable;
   },
 
   down: async (queryInterface, Sequelize) => (

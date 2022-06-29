@@ -13,7 +13,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-    })
+    });
+    return CategoriesTable;
   },
 
   down: async (queryInterface, Sequelize) => (

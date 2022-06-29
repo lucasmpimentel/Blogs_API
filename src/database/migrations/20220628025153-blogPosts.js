@@ -36,6 +36,7 @@ module.exports = {
         type: Sequelize.DATE,
       }
     });
+    return BlogPostsTable;
   },
 
   down: async (queryInterface, Sequelize) => {
