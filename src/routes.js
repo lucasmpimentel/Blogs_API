@@ -3,8 +3,10 @@ const express = require('express');
 const routes = express.Router();
 
 const loginValidation = require('./middlewares/loginMiddleware');
+const userMiddleware = require('./middlewares/userMiddleware');
 
 const login = require('./controller/login');
+const user = require('./controller/user');
 
 const voidFunc = (_req, _res, next) => { next(); };
 
@@ -16,8 +18,8 @@ routes.route('/login')
 // ----------------------- USER ROUTES ----------------------- //
 
 routes.route('/user')
-  .get(voidFunc)
-  .post(voidFunc);
+.get(voidFunc)
+.post(userMiddleware.addUser, user.addUser);
 
 routes.route('/user/:id')
   .get(voidFunc);

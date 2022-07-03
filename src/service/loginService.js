@@ -20,16 +20,17 @@ const login = async (email, password) => {
   const getUser = await User.findOne({ where: { email } });
   const validation = checkCredencials(email, password, getUser);
   
-  if (!getUser || !validation) throw new CustomError(400, 'Invalid fields');
-  const { id, displayName, email: userEmail, image } = getUser;
-
-  const token = jwt.sign({ payload: {
-    id,
-    displayName,
-    email: userEmail,
-    image,
-  } }, secret, jwtConfig);
-  return { token };
+  if (getUser && validation) {
+    const { id, displayName, image } = getUser;
+    const token = jwt.sign({ payload: {
+      id,
+      displayName,
+      email,
+      image,
+    } }, secret, jwtConfig);
+    return { token };
+  }
+  throw new CustomError(400, 'Invalid fields');
 };
 
 module.exports = {
