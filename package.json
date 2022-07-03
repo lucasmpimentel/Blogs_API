@@ -24,6 +24,7 @@
     "start:test": "API_PORT=3030 NODE_ENV=test npm start",
     "kill:test": "kill -9 $(lsof -t -i:3030) &> /dev/null",
     "drop": "npx sequelize-cli db:drop",
+    "drop:test": "NODE_ENV=test npx sequelize-cli db:drop",
     "seed": "npx sequelize-cli db:seed:all",
     "pretest": "(npm run kill:test && NODE_ENV=test npm run start:test) &",
     "test": "npx -y wait-on -t 300000 http://localhost:3030 && NODE_ENV=test jest -i --verbose --forceExit",

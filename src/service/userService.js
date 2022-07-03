@@ -29,6 +29,18 @@ const addUser = async (newUser) => {
   throw new CustomError(500, 'Internal server error');
 };
 
+const getAllUsers = async () => {
+  const users = await User.findAll();
+  const result = users.map(({ id, displayName, email, image }) => ({
+    id,
+    displayName,
+    email,
+    image,
+  }));
+  return result;
+};
+
 module.exports = {
   addUser,
+  getAllUsers,
 };

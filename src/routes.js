@@ -2,6 +2,7 @@ const express = require('express');
 
 const routes = express.Router();
 
+const authToken = require('./middlewares/authToken');
 const loginValidation = require('./middlewares/loginMiddleware');
 const userMiddleware = require('./middlewares/userMiddleware');
 
@@ -18,8 +19,8 @@ routes.route('/login')
 // ----------------------- USER ROUTES ----------------------- //
 
 routes.route('/user')
-.get(voidFunc)
-.post(userMiddleware.addUser, user.addUser);
+  .get(authToken, user.getAllUsers)
+  .post(userMiddleware.addUser, user.addUser);
 
 routes.route('/user/:id')
   .get(voidFunc);
