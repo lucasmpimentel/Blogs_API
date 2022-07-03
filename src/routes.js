@@ -33,16 +33,16 @@ routes.route('/user/me')
 // --------------- POST AND CATEGORY ROUTES ----------------- // 
 
 routes.route('/categories')
-  .get(voidFunc)
+  .get(authToken, category.getAll)
   .post(authToken, categoriesMiddleware.categorieValidation, category.addCategory);
 
 routes.route('/post')
-  .get(voidFunc)
-  .post(voidFunc);
+  .get(authToken, voidFunc)
+  .post(authToken, voidFunc);
 
 routes.route('/post/:id')
-  .get(voidFunc)
-  .put(voidFunc)
-  .delete(voidFunc);
+  .get(authToken, voidFunc)
+  .put(authToken, voidFunc)
+  .delete(authToken, voidFunc);
 
   module.exports = routes;
