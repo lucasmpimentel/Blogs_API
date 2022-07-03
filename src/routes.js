@@ -23,7 +23,7 @@ routes.route('/user')
   .post(userMiddleware.addUser, user.addUser);
 
 routes.route('/user/:id')
-  .get(voidFunc);
+  .get(authToken, user.getUserById);
 
 routes.route('/user/me')
   .delete(voidFunc);
