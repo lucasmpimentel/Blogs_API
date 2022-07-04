@@ -10,7 +10,7 @@ const authToken = async (req, _res, next) => {
 
   jwt.verify(token, secret, (err, decoded) => {
     if (err) throw new CustomError(401, 'Expired or invalid token');
-    req.user = decoded.data;
+    req.user = decoded.payload;
   });
 
   next();

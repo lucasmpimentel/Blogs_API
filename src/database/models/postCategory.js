@@ -5,17 +5,19 @@ module.exports = (sequelize, DataTypes) => {
     postId: DataTypes.INTEGER,
     categoryId: DataTypes.INTEGER,
   }, {
-    timestaps: false,
+    timestamps: false,
     tableName: 'PostCategories',
   });
 
   postCategoryModel.associate = (models) => {
     models.BlogPost.belongsToMany(models.Category, {
+      as: 'categories',
       through: postCategoryModel,
       foreignKey: 'postId',
       otherKey: 'categoryId',
     });
     models.Category.belongsToMany(models.BlogPost, {
+      as: 'posts',
       through: postCategoryModel,
       foreignKey: 'categoryId',
       otherKey: 'postId',

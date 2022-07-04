@@ -28,12 +28,12 @@ module.exports = {
         },
       },
       published: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
       },
       updated: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
       }
     });
     return BlogPostsTable;

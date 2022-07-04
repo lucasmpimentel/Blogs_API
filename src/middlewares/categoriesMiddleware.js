@@ -18,6 +18,4 @@ const categorieValidation = async (req, _res, next) => {
   next();
 };
 
-module.exports = {
-  categorieValidation,
-};
+module.exports = categorieValidation;

@@ -5,11 +5,13 @@ const routes = express.Router();
 const authToken = require('./middlewares/authToken');
 const loginValidation = require('./middlewares/loginMiddleware');
 const userMiddleware = require('./middlewares/userMiddleware');
-const categoriesMiddleware = require('./middlewares/categoriesMiddleware');
+const categorieValidation = require('./middlewares/categoriesMiddleware');
+const newPostValidation = require('./middlewares/postsMiddleware');
 
 const login = require('./controller/login');
 const user = require('./controller/user');
 const category = require('./controller/category');
+const post = require('./controller/post');
 
 const voidFunc = (_req, _res, next) => { next(); };
 
@@ -34,11 +36,11 @@ routes.route('/user/me')
 
 routes.route('/categories')
   .get(authToken, category.getAll)
-  .post(authToken, categoriesMiddleware.categorieValidation, category.addCategory);
+  .post(authToken, categorieValidation, category.addCategory);
 
 routes.route('/post')
   .get(authToken, voidFunc)
-  .post(authToken, voidFunc);
+  .post(authToken, newPostValidation, post.addPost);
 
 routes.route('/post/:id')
   .get(authToken, voidFunc)
